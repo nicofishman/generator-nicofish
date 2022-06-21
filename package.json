@@ -1,33 +1,25 @@
 {
-  "name": "vite-react-ts-tailwind-eslint",
-  "private": true,
-  "version": "0.0.0",
-  "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview"
-  },
-  "dependencies": {
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0"
-  },
-  "devDependencies": {
-    "@types/react": "^18.0.0",
-    "@types/react-dom": "^18.0.0",
-    "@typescript-eslint/eslint-plugin": "^5.29.0",
-    "@typescript-eslint/parser": "^5.29.0",
-    "@vitejs/plugin-react": "^1.3.0",
-    "autoprefixer": "^10.4.7",
-    "eslint": "^8.18.0",
-    "eslint-config-standard": "^17.0.0",
-    "eslint-plugin-import": "^2.26.0",
-    "eslint-plugin-n": "^15.2.3",
-    "eslint-plugin-promise": "^6.0.0",
-    "eslint-plugin-react": "^7.30.0",
-    "eslint-plugin-tailwindcss": "^3.5.2",
-    "postcss": "^8.4.14",
-    "tailwindcss": "^3.1.3",
-    "typescript": "^4.6.3",
-    "vite": "^2.9.9"
-  }
+    "name": "generator-nicofish",
+    "version": "0.0.1",
+    "description": "NicoFish generator",
+    "author": "nicofish",
+    "license": "ISC",
+    "files": [
+        "generators"
+    ],
+    "keywords": [
+        "yeoman-generator"
+    ],
+    "dependencies": {
+        "yeoman-generator": "^2.0.1"
+    },
+    "devDependencies": {
+        "eslint": "^4.13.1",
+        "eslint-config-standard": "^11.0.0-beta.0",
+        "eslint-plugin-import": "^2.8.0",
+        "eslint-plugin-node": "^5.2.1",
+        "eslint-plugin-prettier": "^2.3.1",
+        "eslint-plugin-promise": "^3.6.0",
+        "eslint-plugin-standard": "^3.0.1"
+    }
 }
