@@ -1,6 +1,15 @@
 const Generator = require("yeoman-generator");
 
 module.exports = class extends Generator {
+    async initialization() {
+        const { projectName } = await this.prompt({
+            type: "input",
+            name: "projectName",
+            message: "What is the name of your project?",
+        })
+        this.appname = projectName.toLowerCase().replace(/\s/g, "-");
+        this.log(`Your project name is ${projectName.toLowerCase().replace(/\s/g, "-")}`);
+    }
     installDependencies() {
         this.npmInstall(
             [
@@ -38,5 +47,10 @@ module.exports = class extends Generator {
             this.destinationPath(".")
         );
     }
-
+    addNameToPackageJson() {
+        this.fs.extendJSON(
+            this.destinationPath("package.json"),
+            { name: this.appname }
+        );
+    }
 };
