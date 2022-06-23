@@ -1,15 +1,6 @@
 const Generator = require("yeoman-generator");
 
 module.exports = class extends Generator {
-    async initialization() {
-        const { projectName } = await this.prompt({
-            type: "input",
-            name: "projectName",
-            message: "What is the name of your project?",
-        })
-        this.appname = projectName.toLowerCase().replace(/\s/g, "-");
-        this.log(`Your project name is ${projectName.toLowerCase().replace(/\s/g, "-")}`);
-    }
     installDependencies() {
         this.npmInstall(
             [
@@ -44,13 +35,47 @@ module.exports = class extends Generator {
     files() {
         this.fs.copy(
             this.templatePath("**/*"),
-            this.destinationPath(".")
+            this.destinationPath("../.")
         );
     }
+
     addNameToPackageJson() {
         this.fs.extendJSON(
-            this.destinationPath("package.json"),
+            this.destinationPath("../package.json"),
             { name: this.appname }
         );
+    }
+
+    editHTMLTitle() {
+        this.fs.copyTpl(
+            this.templatePath("index.html"),
+            this.destinationPath("../index.html"),
+            { message: this.appname }
+        );
+
+        this.fs.copyTpl(
+            this.templatePath("src/App.tsx"),
+            this.destinationPath("../src/App.tsx"),
+            { message: this.appname }
+        );
+    }
+
+    async createRepo() {
+        const { desicion } = await this.prompt({
+            type: "confirm",
+            name: "desicion",
+            message: "Do you want to create a repo?",
+            default: true
+        })
+        if (desicion) {
+            this.spawnCommandSync("git", ["init"]);
+            this.fs.copy(
+                this.templatePath(".gitignore"),
+                this.destinationPath("../.gitignore")
+            );
+        }
+    }
+    finalize() {
+        this.fs.delete(this.destinationPath(`/${this.appname}`));
     }
 };
