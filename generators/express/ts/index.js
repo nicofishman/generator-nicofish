@@ -3,22 +3,27 @@ module.exports = class extends Generator {
     installDependencies() {
         this.npmInstall(
             [
-                "cookie-parser",
-                "cors",
-                "dotenv",
-                "express"
-            ],
-            { "save-dev": false }
+                "@types/cookie-parser",
+                "@types/cors",
+                "@types/express",
+                "@typescript-eslint/eslint-plugin",
+                "@typescript-eslint/parser",
+                "eslint",
+                "eslint-config-standard",
+                "eslint-plugin-import",
+                "eslint-plugin-n",
+                "eslint-plugin-promise",
+                "ts-node-dev",
+                "typescript"
+            ], { "saveDev": true }
         )
         this.npmInstall(
             [
-                "eslint",
-                "eslint-plugin-import",
-                "eslint-config-standard",
-                "eslint-plugin-n",
-                "eslint-plugin-promise"
-            ],
-            { "save-dev": true }
+                "cors",
+                "dotenv",
+                "express",
+                "cookie-parser",
+            ], { "saveDev": false }
         )
     }
 
@@ -34,8 +39,8 @@ module.exports = class extends Generator {
             }
         )
         this.fs.copy(
-            this.templatePath(".eslintrc"),
-            this.destinationPath("../.eslintrc")
+            this.templatePath(".eslintrc.json"),
+            this.destinationPath("../.eslintrc.json")
         )
     }
 
