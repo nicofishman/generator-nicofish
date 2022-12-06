@@ -35,7 +35,16 @@ module.exports = class extends Generator {
     files() {
         this.fs.copy(
             this.templatePath("**/*"),
-            this.destinationPath("../.")
+            this.destinationPath("../."),
+            {
+                globOptions: {
+                    ignore: ["**/node_modules/**"]
+                }
+            }
+        );
+        this.fs.copy(
+            this.templatePath("./.eslintrc.json"),
+            this.destinationPath("../.eslintrc.json")
         );
     }
 
